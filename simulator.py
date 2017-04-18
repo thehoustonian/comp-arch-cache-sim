@@ -20,6 +20,7 @@ class CacheSimulator(object):
         self.trace = []
         self.hit_count = 0
         self.miss_count = 0
+        self.trace_count = 0
 
         self.num_cache_lines = int(self.cache_size / (self.assoc_level * self.block_size))
         self.cacheLines = [CacheLine(self.assoc_level) for i in range (0, self.num_cache_lines)]
@@ -37,7 +38,8 @@ class CacheSimulator(object):
             line_number = block_addr % self.num_cache_lines  # cache line calculation
             access_type = line[0]  # access type is 0 (read data),1 (write data), 2 (inst fetch), 3 (treat as unknown), 4 (flush cache)
             cache_line = self.cacheLines[line_number]
-
+            self.trace_count += 1
+            
             if self.is_hit(cache_line, tag):
                 self.hit_count += 1
             else:

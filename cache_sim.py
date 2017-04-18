@@ -54,7 +54,8 @@ sim = CacheSimulator(fname, usize, ubsize, uassoc, urepl, uwalloc)
 print("Cache lines: ", sim.num_cache_lines)
 sim.simulate()
 
-print("Demand Accesses  ",sim.hit_count)
+print("Demand Accesses  ",sim.trace_count)
+print("Demand Hits ", sim.hit_count)
 print("Demand Misses ",sim.miss_count)
 
 
